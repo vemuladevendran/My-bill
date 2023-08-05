@@ -1,0 +1,7 @@
+{
+  "name": "My Bill",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
