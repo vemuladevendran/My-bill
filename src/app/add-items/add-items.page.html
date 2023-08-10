@@ -1,0 +1,53 @@
+<div class="container p-2 px-3">
+  <h1 class="text-center h3">Add New Items</h1>
+  <p class="text-center app-text-highlight">
+    <small>Add the items that makes your business grow</small>
+  </p>
+  <form class="py-4">
+    <div>
+      <input
+        class="form-control app-form"
+        type="text"
+        placeholder="Item name Eg: Rice"
+      />
+    </div>
+    <div>
+      <input
+        class="form-control app-form"
+        type="number"
+        min="0"
+        placeholder="Price Eg: 5"
+      />
+    </div>
+    <div>
+      <select class="form-select app-form" aria-label="Default select example">
+        <option selected>Select the category</option>
+        <option value="morning tiffin">Morning Tiffin</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="snacks">Snacks</option>
+      </select>
+    </div>
+    <!-- logo select page -->
+    <div class="app-form my-3">
+      To select item logo <span class="cursor-pointer app-text-highlight">Click here</span> 
+    </div>
+    <!-- internet connection information -->
+    <!-- <small class="text-danger"><i class="bi bi-info-circle-fill"></i> To select images internet should be turn on</small> -->
+    <!-- submit button -->
+    <div class="app-form mt-3 row">
+      <div class="col-6"> <button routerLink="/items" class="app-btn border border-dark w-100">Cancel</button></div>
+     <div class="col-6"> <button class="app-btn app-bg-highlight w-100">Submit</button></div>
+    </div>
+  </form>
+
+  <!-- note details -->
+  <!-- <h6>Note</h6>
+  <code>
+    1. My Bill app required storage permission to store the data in local. <br> <br>
+
+    2. App dont't need internet once product is added. <br> <br>
+
+    3. Data in the app will not store in any cloud. Data will securely stored in local system.
+  </code> -->
+</div>
