@@ -1,7 +1,25 @@
 <div class="card-wrapper p-2 rounded border">
- <div>
-  <img class="item-img w-100" src="/assets/items/idlly.png" alt="IDLLY">
- </div>
- <h6 class="text-center">IDLLY</h6>
-  <button class="border-0 w-100 app-bg-highlight py-1 rounded"><i class="bi bi-plus-lg"></i> Add</button>
+  <div>
+    <img
+      class="item-img w-100"
+      [src]="'/assets/items/' + itemsData?.itemImage + '.png'"
+      [alt]="itemsData?.itemImage"
+    />
+  </div>
+  <h6 class="text-center">{{itemsData?.itemName}}</h6>
+  <button
+    (click)="addItemToCart(itemsData)"
+    class="border-0 w-100 app-bg-highlight py-1 rounded"
+    *ngIf="!isItemInCart"
+  >
+    <i class="bi bi-plus-lg"></i> Add
+  </button>
+  <!-- already exist in cart -->
+  <button
+    class="border border-dark w-100 py-1 rounded"
+    *ngIf="isItemInCart"
+    (click)="removeItemFromCart(itemsData)"
+  >
+    <i class="bi bi-dash-lg"></i> Remove
+  </button>
 </div>

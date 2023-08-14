@@ -3,12 +3,13 @@
   <p class="text-center app-text-highlight">
     <small>Add the items that makes your business grow</small>
   </p>
-  <form class="py-4">
+  <form class="py-4" [formGroup]="addItemForm" (ngSubmit)="createItem()">
     <div>
       <input
         class="form-control app-form"
         type="text"
         placeholder="Item name Eg: Rice"
+        formControlName="itemName"
       />
     </div>
     <div>
@@ -17,10 +18,11 @@
         type="number"
         min="0"
         placeholder="Price Eg: 5"
+        formControlName="itemPrice"
       />
     </div>
     <div>
-      <select class="form-select app-form" aria-label="Default select example">
+      <select class="form-select app-form" aria-label="Default select example" formControlName="itemCategory">
         <option selected>Select the category</option>
         <option value="morning tiffin">Morning Tiffin</option>
         <option value="lunch">Lunch</option>
@@ -29,15 +31,33 @@
       </select>
     </div>
     <!-- logo select page -->
-    <div class="app-form my-3">
-      To select item logo <span class="cursor-pointer app-text-highlight">Click here</span> 
+    <div class="app-form my-3" *ngIf="selectedImg === ''">
+      To select item logo
+      <span
+        (click)="openModel()"
+        data-toggle="modal"
+        data-target="#itemsModal"
+        class="cursor-pointer app-text-highlight"
+        >Click here</span
+      >
+    </div>
+    <!-- selected image -->
+    <div *ngIf="selectedImg !== ''">
+      <img class="preview-img" [src]="'/assets/items/' + selectedImg + '.png'" alt="Item">
+      <span class="cursor-pointer app-text-highlight ms-3" (click)="removeSelectedImage()">Clear the image</span>
     </div>
     <!-- internet connection information -->
     <!-- <small class="text-danger"><i class="bi bi-info-circle-fill"></i> To select images internet should be turn on</small> -->
     <!-- submit button -->
     <div class="app-form mt-3 row">
-      <div class="col-6"> <button routerLink="/items" class="app-btn border border-dark w-100">Cancel</button></div>
-     <div class="col-6"> <button class="app-btn app-bg-highlight w-100">Submit</button></div>
+      <div class="col-6">
+        <button routerLink="/items" class="app-btn border border-dark w-100">
+          Cancel
+        </button>
+      </div>
+      <div class="col-6">
+        <button class="app-btn app-bg-highlight w-100" [disabled]="addItemForm.invalid">Submit</button>
+      </div>
     </div>
   </form>
 
@@ -51,3 +71,47 @@
     3. Data in the app will not store in any cloud. Data will securely stored in local system.
   </code> -->
 </div>
+
+<!-- items list model -->
+<!-- Modal -->
+
+<div
+  class="modal fade"
+  id="itemsModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="itemsModalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" class="text-end p-3">
+        <button
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModel()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6 p-2 border" (click)="selectItemImage(img)" *ngFor="let img of imageNamesList">
+            <img
+              class="w-100 list-img"
+              [src]="'/assets/items/' + img + '.png'"
+              alt="Product Img"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

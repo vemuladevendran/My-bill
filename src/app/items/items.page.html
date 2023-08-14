@@ -1,24 +1,19 @@
 <div class="conatiner position-relative">
-  <header class="row p-3 m-0">
-    <div class="col-2 header-icon d-flex justify-content-center"><i class="fs-3 bi bi-menu-button-wide cursor-pointer"></i></div>
-    <div class="col-8 text-center"><h1 class="h5">My Bill My Hottel</h1></div>
-    <div class="col-2 header-icon qr-icon d-flex justify-content-center"><i routerLink="/add-items" class="fs-3 bi bi-qr-code-scan cursor-pointer"></i></div>
-    <div class="col-12 py-2">
-      <h1 class="text-center">Annapoorna Restaurant</h1>
-    </div>
-  </header>
+  <div class="col-12 py-2">
+    <h1 class="text-center">Annapoorna Restaurant</h1>
+  </div>
   <!-- filters section -->
   <app-filters></app-filters>
 
   <!-- items list -->
   <div class="row p-1 pt-4 m-0">
-    <div class="col-6 col-md-4 my-1" *ngFor="let p of [1,1,1,1,1,1,1,1,1,1]">
-      <app-item-card></app-item-card>
+    <div class="col-6 col-md-4 my-1" *ngFor="let p of itemsList">
+      <app-item-card [itemsData]="p" [isItemInCart]="isItemInCart(p)" (cartItem)="addToCart($event)" (removeCartItem)="removeItemFromCart($event)"></app-item-card>
     </div>
   </div>
 
   <!-- cart card -->
-  <div class="position-sticky bottom-0 start-0 end-0 w-100">
-    <app-cart-card></app-cart-card>
+  <div class="position-sticky bottom-0 start-0 end-0 w-100" *ngIf="cartCount.length > 0">
+    <app-cart-card [cartItems]="cartCount"></app-cart-card>
   </div>
 </div>

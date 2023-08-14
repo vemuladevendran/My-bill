@@ -3,22 +3,37 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 import { StatusBar } from '@capacitor/status-bar';
-import { HttpClientModule } from '@angular/common/http';
+import { Storage } from '@ionic/storage-angular';
 const { App } = Plugins;
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterModule, HttpClientModule],
+  imports: [IonicModule, RouterModule],
 })
 export class AppComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private storage: Storage,
+  ) {}
+
+
 
   ngOnInit() {
-    StatusBar.setBackgroundColor({color:'#839EC8AD'})
-    this.setupBackButton();
+    this.init();
+    // StatusBar.setBackgroundColor({color:'#839EC8AD'})
+    // this.setupBackButton();
   }
+
+  async init(): Promise<void>{
+    try {
+      this.storage = await this.storage.create();
+    } catch (error) {
+      console.log(error, 'Fail to initialize DB');
+      
+    }
+  }
+
 
   private setupBackButton() {
     App['addListener']('backButton', (canGoBack: any) => {

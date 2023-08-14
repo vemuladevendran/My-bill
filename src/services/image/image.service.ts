@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImageService {
-  constructor(private http: HttpClient) {}
+  imagesList = [
+    'biryani',
+    'dosa',
+    'egg-dosa',
+    'idlly',
+    'kal-dosa',
+    'meal',
+    'puri',
+    'vada',
+  ];
+  constructor() {}
 
-  getImageFilenames(): Promise<any> {
-    return lastValueFrom(this.http.get<string[]>('assets/items'));
+  getImageFilenames(): any {
+    return this.imagesList;
   }
 }
