@@ -20,15 +20,38 @@
         </p>
       </div>
       <div class="col-4">
-        <i class="bi bi-dash-circle fs-2 me-2"></i>
+        <i
+          class="bi bi-dash-circle fs-2 me-2"
+          (click)="decreaseCount(c?.itemName)"
+        ></i>
         <span class="fw-bold"> {{c?.count}} </span
-        ><i class="bi bi-plus-circle fs-2 ms-2"></i>
+        ><i
+          class="bi bi-plus-circle fs-2 ms-2"
+          (click)="increaseCount(c?.itemName)"
+        ></i>
       </div>
+    </div>
+    <!-- total items price  -->
+    <div class="row py-3 fw-bold app-text-highlight">
+      <div class="col-6 text-center">TOTAL PRICE :</div>
+      <div class="col-6 text-end">{{totalPrice}}</div>
     </div>
   </div>
 </div>
 
 <!-- cart card -->
 <div class="position-fixed bottom-0 start-0 end-0 w-100">
-  <app-cart-card></app-cart-card>
+  <div class="container app-bg-highlight rounded">
+    <div class="row px-2 py-4 align-items-center">
+      <div class="col-6 text-center">
+        <p>{{cartItems.length}} Items</p>
+        <p class="mb-0">Total Price : {{totalPrice}}</p>
+      </div>
+      <div class="col-6 text-end">
+        <button class="border-0 bg-transparent fw-bold">
+          Receipt <i class="bi bi-arrow-right-circle-fill"></i>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

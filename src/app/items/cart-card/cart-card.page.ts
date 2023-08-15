@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -12,8 +12,13 @@ import { RouterLink } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule, RouterLink],
 })
 export class CartCardPage implements OnInit {
-  @Input() cartItems:any[] = [];
+  @Input() cartItems: any[] = [];
+  @Output() clearCartItems = new EventEmitter<any>();
   constructor() {}
+
+  removeAllCartItems() {
+    this.clearCartItems.emit(true);
+  }
 
   ngOnInit() {}
 }

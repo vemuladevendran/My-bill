@@ -1,14 +1,40 @@
 <ion-app>
-  <header class="row py-3 m-0">
+  <header class="row py-3 m-0" id="main-content">
+    <ion-menu contentId="main-content" menuId="main-content" class="side-menu">
+      <div class="py-3 px-2">
+        <h2 class="text-center" (click)="closeMenu()" routerLink="/">Annapoorna Restaurant</h2>
+        <hr />
+        <div class="row p-3" (click)="closeMenu()" routerLink="/add-items">
+          <div class="col-2"><i class="bi bi-plus-circle-fill fs-3"></i></div>
+          <div class="col-9 fw-bold fs-3">Add New Item</div>
+        </div>
+        <div class="row p-3" (click)="closeMenu()">
+          <div class="col-2"><i class="bi bi-database-fill fs-3"></i></div>
+          <div class="col-9 fw-bold fs-3">Order Details</div>
+        </div>
+        <div class="row p-3" (click)="closeMenu()">
+          <div class="col-2"><i class="bi bi-pen-fill fs-3"></i></div>
+          <div class="col-9 fw-bold fs-3">Store Details</div>
+        </div>
+        <div class="row p-3" (click)="closeMenu()">
+          <div class="col-2"><i class="bi bi-diagram-2-fill fs-3"></i></div>
+          <div class="col-9 fw-bold fs-3">Item Datails</div>
+        </div>
+        <div class="row p-3" (click)="closeMenu()">
+          <div class="col-2"><i class="bi bi-info-circle-fill fs-3"></i></div>
+          <div class="col-9 fw-bold fs-3">App Info</div>
+        </div>
+      </div>
+    </ion-menu>
     <div class="col-2 header-icon d-flex justify-content-center">
-      <i class="fs-3 bi bi-menu-button-wide cursor-pointer"></i>
-    </div>
-    <div class="col-8 text-center"><h1 class="h5">My Bill My Hottel</h1></div>
-    <div class="col-2 header-icon qr-icon d-flex justify-content-center">
       <i
-        routerLink="/add-items"
-        class="fs-3 bi bi-qr-code-scan cursor-pointer"
+        class="fs-3 bi bi-menu-button-wide cursor-pointer"
+        (click)="openMenu()"
       ></i>
+    </div>
+    <div class="col-8 text-center"><h1 class="h5">HAPPY BILL</h1></div>
+    <div class="col-2 header-icon qr-icon d-flex justify-content-center">
+      <i class="fs-3 bi bi-qr-code-scan cursor-pointer"></i>
     </div>
   </header>
   <router-outlet></router-outlet>

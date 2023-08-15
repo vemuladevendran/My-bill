@@ -3,7 +3,7 @@
     <h1 class="text-center">Annapoorna Restaurant</h1>
   </div>
   <!-- filters section -->
-  <app-filters></app-filters>
+  <!-- <app-filters></app-filters> -->
 
   <!-- items list -->
   <div class="row p-1 pt-4 m-0">
@@ -14,6 +14,6 @@
 
   <!-- cart card -->
   <div class="position-sticky bottom-0 start-0 end-0 w-100" *ngIf="cartCount.length > 0">
-    <app-cart-card [cartItems]="cartCount"></app-cart-card>
+    <app-cart-card [cartItems]="cartCount" (clearCartItems)="clearAllCartItems()"></app-cart-card>
   </div>
 </div>

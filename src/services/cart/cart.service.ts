@@ -42,6 +42,26 @@ export class CartService {
         cartItems.splice(index, 1);
       }
       await this.storage.set(this.CART_KEY, cartItems);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error, 'Fail to remove item');
+    }
+  }
+
+  // update cart count
+  async updateCartCount(data: any): Promise<any> {
+    try {
+      await this.storage.set(this.CART_KEY, data);
+    } catch (error) {
+      console.log(error, 'Fail to store data in device');
+    }
+  }
+
+  // clear all cart items
+  async clearCartItems(): Promise<void> {
+    try {
+      await this.storage.remove(this.CART_KEY);
+    } catch (error) {
+      console.log(error, 'Fail to clear');
+    }
   }
 }

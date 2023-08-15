@@ -26,7 +26,7 @@ import { CartService } from 'src/services/cart/cart.service';
 })
 export class ItemsPage implements OnInit {
   itemsList: any[] = [];
-  cartCount:any[] = [];
+  cartCount: any[] = [];
   constructor(
     private itemsServe: ItemsService,
     private cartServe: CartService
@@ -47,7 +47,7 @@ export class ItemsPage implements OnInit {
     try {
       const data = item;
       data['count'] = 1;
-      this.cartServe.addCartItems(data);
+      await this.cartServe.addCartItems(data);
       this.getCartList();
     } catch (error) {
       console.log(error, 'Fail');
@@ -55,16 +55,14 @@ export class ItemsPage implements OnInit {
   }
 
   // remove item from cart
-  async removeItemFromCart(item: any){
+  async removeItemFromCart(item: any) {
     try {
-      this.cartServe.removeCartItems(item);
+      await this.cartServe.removeCartItems(item);
       this.getCartList();
     } catch (error) {
       console.log('Fail', error);
-      
     }
   }
-
 
   isItemInCart(item: any): boolean {
     return this.cartCount.some((x) => x.itemName === item.itemName);
@@ -74,9 +72,19 @@ export class ItemsPage implements OnInit {
 
   async getCartList(): Promise<void> {
     try {
-      this.cartCount = await this.cartServe.getCartItems() || [];
+      this.cartCount = (await this.cartServe.getCartItems()) || [];
     } catch (error) {
       console.log(error, 'Fail to fetch cart items');
+    }
+  }
+
+  // clear all the cart items
+  async clearAllCartItems(): Promise<void> {
+    try {
+      await this.cartServe.clearCartItems();
+      this.getCartList();
+    } catch (error) {
+      console.log(error, 'Fail to remove all cart items');
     }
   }
 
