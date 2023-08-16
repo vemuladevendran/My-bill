@@ -18,4 +18,8 @@ export const routes: Routes = [
     path: 'add-items',
     loadComponent: () => import('./add-items/add-items.page').then( m => m.AddItemsPage)
   },
+  {
+    path: 'barcode-scanner',
+    loadComponent: () => import('./barcode-scanner/barcode-scanner.page').then( m => m.BarcodeScannerPage)
+  },
 ];

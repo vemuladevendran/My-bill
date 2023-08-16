@@ -48,4 +48,6 @@ export class AppComponent implements OnInit {
   closeMenu() {
     this.menuCtrl.close('main-content');
   }
+
+  
 }
