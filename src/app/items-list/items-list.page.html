@@ -1,0 +1,27 @@
+<div class="container position-relative">
+  <h1 class="text-center h3 py-3">ITEMS LIST</h1>
+  <!-- items list -->
+  <div class="px-1" style="margin-bottom: 7rem">
+    <div
+      class="row py-2 my-1 border align-items-center"
+      *ngFor="let c of itemsList"
+    >
+      <div class="col-3">
+        <img
+          class="item-img w-100"
+          [src]="'/assets/items/' + c?.itemImage + '.png'"
+          alt="MEALS"
+        />
+      </div>
+      <div class="col-6">
+        <p class="mb-0 h4">{{c?.itemName}}</p>
+        <p class="mb-0">
+          {{c?.itemPrice | currency:'INR'}}
+        </p>
+      </div>
+      <div class="col-3 text-center">
+        <i class="bi bi-trash-fill fs-3 text-danger" (click)="deleteItem(c)"></i>
+      </div>
+    </div>
+  </div>
+</div>

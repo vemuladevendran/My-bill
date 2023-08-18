@@ -8,12 +8,28 @@
   <!-- items list -->
   <div class="row p-1 pt-4 m-0">
     <div class="col-6 col-md-4 my-1" *ngFor="let p of itemsList">
-      <app-item-card [itemsData]="p" [isItemInCart]="isItemInCart(p)" (cartItem)="addToCart($event)" (removeCartItem)="removeItemFromCart($event)"></app-item-card>
+      <app-item-card
+        [itemsData]="p"
+        [isItemInCart]="isItemInCart(p)"
+        (cartItem)="addToCart($event)"
+        (removeCartItem)="removeItemFromCart($event)"
+      ></app-item-card>
+    </div>
+    <div class="text-center" *ngIf="!itemsList || itemsList.length === 0">
+      <button class="border-0 app-bg-highlight rounded" routerLink="/add-items">
+        <i class="bi bi-plus-lg"></i> Add new items
+      </button>
     </div>
   </div>
 
   <!-- cart card -->
-  <div class="position-sticky bottom-0 start-0 end-0 w-100" *ngIf="cartCount.length > 0">
-    <app-cart-card [cartItems]="cartCount" (clearCartItems)="clearAllCartItems()"></app-cart-card>
+  <div
+    class="position-sticky bottom-0 start-0 end-0 w-100"
+    *ngIf="cartCount.length > 0"
+  >
+    <app-cart-card
+      [cartItems]="cartCount"
+      (clearCartItems)="clearAllCartItems()"
+    ></app-cart-card>
   </div>
 </div>

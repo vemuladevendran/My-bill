@@ -11,17 +11,17 @@ export class ItemsService {
 
   async createNewItem(data: any): Promise<any> {
     try {
-        const itemsList = await this.getItemsData() as any; 
-        if (itemsList === null) {
-            await this.storage.set(this.ITEMS, [data]);
-            return;
-        }
-        itemsList.push(data); 
-        await this.storage.set(this.ITEMS, itemsList);
+      const itemsList = (await this.getItemsData()) as any;
+      if (itemsList === null) {
+        await this.storage.set(this.ITEMS, [data]);
+        return;
+      }
+      itemsList.push(data);
+      await this.storage.set(this.ITEMS, itemsList);
     } catch (error) {
-        console.log(error, 'Fail to store data in device');
+      console.log(error, 'Fail to store data in device');
     }
-}
+  }
 
   async getItemsData(): Promise<any> {
     try {
@@ -29,6 +29,22 @@ export class ItemsService {
       return data;
     } catch (error) {
       console.log(error, 'Fail to retrieve data');
+    }
+  }
+
+  async deleteItem(item: any): Promise<any> {
+    try {
+      const itemsList = (await this.getItemsData()) as any;
+
+      const index = itemsList.findIndex(
+        (cartItem: { itemName: any }) => cartItem.itemName === item.itemName
+      );
+      if (index !== -1) {
+        itemsList.splice(index, 1);
+      }
+      await this.storage.set(this.ITEMS, itemsList);
+    } catch (error) {
+      console.log(error, 'Fail to Delete Item data');
     }
   }
 }
