@@ -8,6 +8,7 @@ import { CartCardPage } from './cart-card/cart-card.page';
 import { RouterLink } from '@angular/router';
 import { ItemsService } from 'src/services/items/items.service';
 import { CartService } from 'src/services/cart/cart.service';
+import { AuthService } from 'src/services/auth/auth.service';
 
 @Component({
   selector: 'app-items',
@@ -27,9 +28,12 @@ import { CartService } from 'src/services/cart/cart.service';
 export class ItemsPage implements OnInit {
   itemsList: any[] = [];
   cartCount: any[] = [];
+  storeDetails:any;
+  
   constructor(
     private itemsServe: ItemsService,
-    private cartServe: CartService
+    private cartServe: CartService,
+    private authServe: AuthService,
   ) {}
 
   // get store items list
@@ -88,7 +92,22 @@ export class ItemsPage implements OnInit {
     }
   }
 
+
+  async getStoreDetails(): Promise<void>{
+    try {
+      this.storeDetails = await this.authServe.getStoreDetails();
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+
+  async isLoggedIn() {
+    return this.authServe.isLoggedIn();
+   }
+
   ngOnInit() {
+    this.getStoreDetails();
     this.getItems();
     this.getCartList();
   }

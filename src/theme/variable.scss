@@ -1,22 +1,13 @@
 :root {
-  --primary-color: black;
-  --secondary-color: white;
-  --highlight-color: #75ff9e;
+  --primary-color: white;
+  --secondary-color: #75ff9e;
 }
 /* global app colors */
 
-.app-bg-primary {
-  background-color: var(--secondary-color);
+.app-text-secondary {
+  color: var(--secondary-color) !important;
 }
 
-.app-text-primary {
-  color: var(--primary-color);
-}
-
-.app-text-highlight {
-  color: var(--highlight-color);
-}
-
-.app-bg-highlight {
-  background-color: var(--highlight-color);
+.app-bg-secondary {
+  background-color: var(--secondary-color) !important;
 }

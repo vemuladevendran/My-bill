@@ -1,7 +1,7 @@
 <div class="container p-2 px-3">
   <h1 class="text-center h3">Add New Items</h1>
-  <p class="text-center app-text-highlight">
-    <small>Add the items that makes your business grow</small>
+  <p class="text-center">
+    <small class="fw-bold">Add the items that makes your business grow</small>
   </p>
   <form class="py-4" [formGroup]="addItemForm" (ngSubmit)="createItem()">
     <div>
@@ -37,14 +37,14 @@
         (click)="openModel()"
         data-toggle="modal"
         data-target="#itemsModal"
-        class="cursor-pointer app-text-highlight"
+        class="cursor-pointer fw-bold"
         >Click here</span
       >
     </div>
     <!-- selected image -->
     <div *ngIf="selectedImg !== ''">
       <img class="preview-img" [src]="'/assets/items/' + selectedImg + '.png'" alt="Item">
-      <span class="cursor-pointer app-text-highlight ms-3" (click)="removeSelectedImage()">Clear the image</span>
+      <span class="cursor-pointer ms-3" (click)="removeSelectedImage()">Clear the image</span>
     </div>
     <!-- internet connection information -->
     <!-- <small class="text-danger"><i class="bi bi-info-circle-fill"></i> To select images internet should be turn on</small> -->
@@ -56,7 +56,7 @@
         </button>
       </div>
       <div class="col-6">
-        <button class="app-btn app-bg-highlight w-100" [disabled]="addItemForm.invalid">Submit</button>
+        <button class="app-btn app-bg-secondary w-100" [disabled]="addItemForm.invalid">Submit</button>
       </div>
     </div>
   </form>

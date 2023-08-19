@@ -13,6 +13,11 @@ export class ImageService {
     'meal',
     'puri',
     'vada',
+    'chapati',
+    'egg',
+    'off-boil',
+    'omelette',
+    'pongal',
   ];
   constructor() {}
 

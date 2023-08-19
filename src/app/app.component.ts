@@ -5,19 +5,29 @@ import { Plugins } from '@capacitor/core';
 import { StatusBar } from '@capacitor/status-bar';
 import { Storage } from '@ionic/storage-angular';
 import { MenuController } from '@ionic/angular';
+import { AuthService } from 'src/services/auth/auth.service';
+import { CommonModule } from '@angular/common';
 const { App } = Plugins;
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterModule],
+  imports: [IonicModule, RouterModule, CommonModule],
 })
 export class AppComponent implements OnInit {
-  constructor(private storage: Storage, private menuCtrl: MenuController) {}
+  storeDetails: any;
+  login = false;
+  constructor(
+    private storage: Storage,
+    private menuCtrl: MenuController,
+    private authServe: AuthService
+  ) {}
 
   ngOnInit() {
     this.init();
+    this.getStoreDetails();
+    this.isLoggin();
     StatusBar.setBackgroundColor({ color: '#839EC8AD' });
     this.setupBackButton();
   }
@@ -27,6 +37,15 @@ export class AppComponent implements OnInit {
       this.storage = await this.storage.create();
     } catch (error) {
       console.log(error, 'Fail to initialize DB');
+    }
+  }
+
+  async getStoreDetails(): Promise<void>{
+    try {
+      this.storeDetails = await this.authServe.getStoreDetails();
+    } catch (error) {
+      console.log(error);
+      
     }
   }
 
@@ -49,5 +68,7 @@ export class AppComponent implements OnInit {
     this.menuCtrl.close('main-content');
   }
 
-  
+  async isLoggin() {
+    this.login = await this.authServe.isLoggedIn();
+  }
 }

@@ -1,6 +1,6 @@
 <div class="conatiner position-relative">
   <div class="col-12 py-2">
-    <h1 class="text-center">Annapoorna Restaurant</h1>
+    <h1 class="text-center text-uppercase">{{storeDetails?.storeName}}</h1>
   </div>
   <!-- filters section -->
   <!-- <app-filters></app-filters> -->
@@ -16,7 +16,7 @@
       ></app-item-card>
     </div>
     <div class="text-center" *ngIf="!itemsList || itemsList.length === 0">
-      <button class="border-0 app-bg-highlight rounded" routerLink="/add-items">
+      <button class="btn border-0 app-bg-secondary rounded" routerLink="/add-items">
         <i class="bi bi-plus-lg"></i> Add new items
       </button>
     </div>
