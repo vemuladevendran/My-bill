@@ -47,4 +47,12 @@ export class ItemsService {
       console.log(error, 'Fail to Delete Item data');
     }
   }
+
+  async updateOrder(data: any): Promise<void> {
+    try {
+      await this.storage.set(this.ITEMS, data);
+    } catch (error) {
+      console.log(error, 'Fail to update order');
+    }
+  }
 }

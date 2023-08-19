@@ -37,6 +37,22 @@ export class ItemsListPage implements OnInit {
     }
   }
 
+  reorderItems(event: any) {
+    const itemToMove = this.itemsList.splice(event.detail.from, 1)[0];
+    this.itemsList.splice(event.detail.to, 0, itemToMove);
+    event.detail.complete();
+    this.updateItemsOrder(this.itemsList);
+  }
+
+  // update items order
+  async updateItemsOrder(data: any): Promise<void> {
+    try {
+      await this.itemsServe.updateOrder(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   ngOnInit() {
     this.getItems();
   }

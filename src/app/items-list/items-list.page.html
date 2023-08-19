@@ -1,27 +1,36 @@
-<div class="container position-relative">
-  <h1 class="text-center h3 py-3">ITEMS LIST</h1>
+<div class="container position-relative px-3">
+  <h1 class="text-center h3">ITEMS LIST</h1>
   <!-- items list -->
-  <div class="px-1" style="margin-bottom: 7rem">
-    <div
-      class="row py-2 my-1 border align-items-center"
-      *ngFor="let c of itemsList"
+  <div class="px-1" style="margin: 5rem auto 7rem">
+    <ion-reorder-group
+      [disabled]="false"
+      (ionItemReorder)="reorderItems($event)"
     >
-      <div class="col-3">
-        <img
-          class="item-img w-100"
-          [src]="'/assets/items/' + c?.itemImage + '.png'"
-          alt="MEALS"
-        />
-      </div>
-      <div class="col-6">
-        <p class="mb-0 h4">{{c?.itemName}}</p>
-        <p class="mb-0">
-          {{c?.itemPrice | currency:'INR'}}
-        </p>
-      </div>
-      <div class="col-3 text-center">
-        <i class="bi bi-trash-fill fs-3 text-danger" (click)="deleteItem(c)"></i>
-      </div>
-    </div>
+      <ion-item
+        *ngFor="let c of itemsList"
+        class="row py-1 my-1 align-items-center border"
+      >
+        <div class="col-3">
+          <img
+            class="item-img w-100"
+            [src]="'/assets/items/' + c?.itemImage + '.png'"
+            [alt]="c?.itemImage"
+          />
+        </div>
+        <div class="col-5">
+          <p class="mb-0 h4">{{c?.itemName}}</p>
+          <p class="mb-0">{{c?.itemPrice | currency:'INR'}}</p>
+        </div>
+        <div class="col-2 text-center">
+          <i
+            class="bi bi-trash-fill fs-3 text-danger"
+            (click)="deleteItem(c)"
+          ></i>
+        </div>
+        <ion-reorder class="col-2"
+          ><ion-icon name="move-outline"></ion-icon></ion-reorder
+        >
+      </ion-item>
+    </ion-reorder-group>
   </div>
 </div>
