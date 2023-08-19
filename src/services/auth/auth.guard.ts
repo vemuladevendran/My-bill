@@ -25,7 +25,6 @@ export class AuthGuard implements CanActivate, CanLoad {
     state: RouterStateSnapshot
   ): Promise<any> {
     const isLoggedIn = await this.authServe.isLoggedIn();
-    console.log(isLoggedIn, '------------------');
     
     const isGoingToNonLoginPage = this.nonLoginOnlyRoutes.some(
       (r) => route.routeConfig?.path === r
@@ -40,7 +39,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     }
 
     if (isLoggedIn && isGoingToNonLoginPage) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/items']);
       return false;
     }
 
@@ -50,7 +49,6 @@ export class AuthGuard implements CanActivate, CanLoad {
 
   async canLoad(route: Route, segments: UrlSegment[]): Promise<any> {
     const isLoggedIn = await this.authServe.isLoggedIn();
-    console.log(isLoggedIn, '-------------------------');
 
     const isGoingToNonLoginPage = this.nonLoginOnlyRoutes.some(
       (r) => route.path === r

@@ -1,25 +1,22 @@
 :root {
-    --primary-color:  #eff4ef;
-    --secondary-color:  #839EC8AD;
-    --highlight-color: #fcda67;
-  }
-  /* global app colors */
-
-
+  --primary-color: black;
+  --secondary-color: white;
+  --highlight-color: #75ff9e;
+}
+/* global app colors */
 
 .app-bg-primary {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .app-text-primary {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .app-text-highlight {
-    color: var(--highlight-color);
+  color: var(--highlight-color);
 }
 
 .app-bg-highlight {
-    background-color: var(--highlight-color);
-    color: black;
+  background-color: var(--highlight-color);
 }
