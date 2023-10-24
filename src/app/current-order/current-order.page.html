@@ -48,7 +48,7 @@
         <p class="mb-0">Total Price : {{totalPrice | currency:'INR'}}</p>
       </div>
       <div class="col-6 text-end">
-        <button class="border-0 bg-transparent fw-bold">
+        <button class="border-0 bg-transparent fw-bold" (click)="storeOrderDetails()">
           Receipt <i class="bi bi-arrow-right-circle-fill"></i>
         </button>
       </div>

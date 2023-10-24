@@ -7,7 +7,7 @@
           <div class="col-2"><i class="bi bi-plus-circle-fill fs-4"></i></div>
           <div class="col-9 fw-bold fs-4">Add New Item</div>
         </div>
-        <div class="row p-3 cursor-pointer border" (click)="closeMenu()">
+        <div class="row p-3 cursor-pointer border" (click)="closeMenu()" routerLink="/order-details">
           <div class="col-2"><i class="bi bi-database-fill fs-4"></i></div>
           <div class="col-9 fw-bold fs-4">Order Details</div>
         </div>
@@ -36,6 +36,7 @@
       <i class="fs-3 bi bi-house-door-fill cursor-pointer" routerLink="/"></i>
       <!-- <i class="fs-3 bi bi-qr-code-scan cursor-pointer" routerLink="/barcode-scanner"></i> -->
     </div>
+    <div id="google_translate_element"></div>
   </header>
   <router-outlet></router-outlet>
 </ion-app>

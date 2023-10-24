@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CartCardPage } from '../items/cart-card/cart-card.page';
 import { CartService } from 'src/services/cart/cart.service';
+import { OrdersService } from 'src/services/orders/orders.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-current-order',
@@ -16,7 +18,11 @@ export class CurrentOrderPage implements OnInit {
   cartItems: any[] = [];
   totalPrice = 0;
 
-  constructor(private cartServe: CartService) {}
+  constructor(
+    private cartServe: CartService,
+    private orderServe: OrdersService,
+    private router: Router
+  ) {}
 
   // get cart list
 
@@ -66,6 +72,26 @@ export class CurrentOrderPage implements OnInit {
       total += item.itemPrice * item.count;
     }
     this.totalPrice = total;
+  }
+
+  // store order details
+
+  async storeOrderDetails(): Promise<void> {
+    try {
+      const randomNumber = Math.floor(Math.random() * 999999) + 1;
+      const orderId = randomNumber.toString().padStart(6, '0');
+      const data = {
+        orderId: orderId,
+        items: this.cartItems,
+        date: new Date(),
+        totalPrice: this.totalPrice,
+      };
+      await this.orderServe.createOrder(data);
+      this.cartServe.clearCartItems();
+      this.router.navigate(['/']);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   ngOnInit() {
